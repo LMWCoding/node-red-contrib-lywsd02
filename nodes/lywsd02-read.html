@@ -1,0 +1,57 @@
+<script type="text/javascript">
+    (function () {
+        'use strict';
+        RED.nodes.registerType('lywsd02-read', {
+            category: 'hardware',
+            color: '#666666',
+            defaults: {
+                name: { value: "" },
+                device: { value: "", type: "lywsd02-config", required: true }
+            },
+            inputs: 1,
+            outputs: 1,
+            icon: "font-awesome/fa-thermometer-half",
+            label: function () {
+                return this.name || "LYWSD02 read";
+            },
+            labelStyle: function () {
+                return this.name ? "" : "node_label_italic";
+            }
+        });
+    }());
+</script>
+
+<script type="text/html" data-template-name="lywsd02-read">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="e.g. Living Room">
+    </div>
+    <div class="form-row">
+        <label for="node-input-device"><i class="fa fa-bluetooth"></i> Device</label>
+        <input type="text" id="node-input-device">
+    </div>
+    <div class="form-tips">
+        Send any message to this node to trigger a read. The output
+        <code>msg.payload</code> will be
+        <code>{ temperature, humidity, battery }</code>.
+    </div>
+</script>
+
+<script type="text/html" data-help-name="lywsd02-read">
+    <p>Reads temperature, humidity and battery from a Xiaomi LYWSD02MMC sensor
+    via a BLE GATT connection.</p>
+    <h3>Inputs</h3>
+    <dl class="message-properties">
+        <dt>any</dt>
+        <dd>Any message triggers a read.</dd>
+    </dl>
+    <h3>Outputs</h3>
+    <dl class="message-properties">
+        <dt>payload <span class="property-type">object</span></dt>
+        <dd><code>{ temperature, humidity, battery }</code></dd>
+        <dt>topic <span class="property-type">string</span></dt>
+        <dd>The config node name.</dd>
+        <dt>mac <span class="property-type">string</span></dt>
+        <dd>The device MAC address.</dd>
+    </dl>
+</script>

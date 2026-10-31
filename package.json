@@ -1,0 +1,39 @@
+{
+  "name": "node-red-contrib-lywsd02",
+  "version": "0.1.0",
+  "description": "Node-RED nodes to read Xiaomi LYWSD02MMC temperature/humidity sensors via a reliable BLE GATT connection",
+  "keywords": [
+    "node-red",
+    "node-red-node",
+    "lywsd02",
+    "lywsd02mmc",
+    "xiaomi",
+    "ble",
+    "bluetooth",
+    "temperature",
+    "humidity",
+    "sensor"
+  ],
+  "license": "MIT",
+  "author": "leemw",
+  "main": "nodes/lywsd02-read.js",
+  "contributors": [],
+  "dependencies": {},
+  "engines": {
+    "node": ">=14"
+  },
+  "node-red": {
+    "version": ">=1.0.0",
+    "nodes": {
+      "lywsd02-config": "nodes/lywsd02-config.js",
+      "lywsd02-read": "nodes/lywsd02-read.js"
+    }
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  }
+}

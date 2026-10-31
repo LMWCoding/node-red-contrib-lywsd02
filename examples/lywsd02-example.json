@@ -1,0 +1,62 @@
+[
+    {
+        "id": "lywsd02cfg1",
+        "type": "lywsd02-config",
+        "name": "Living Room",
+        "mac": "E7:2E:00:31:10:B6",
+        "connectTimeout": "10",
+        "notifyTimeout": "15",
+        "python": "python3"
+    },
+    {
+        "id": "lywsd02inj1",
+        "type": "inject",
+        "z": "lywsd02tab1",
+        "name": "Read now",
+        "props": [{ "p": "payload" }],
+        "repeat": "300",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 160,
+        "y": 120,
+        "wires": [["lywsd02read1"]]
+    },
+    {
+        "id": "lywsd02read1",
+        "type": "lywsd02-read",
+        "z": "lywsd02tab1",
+        "name": "LYWSD02",
+        "device": "lywsd02cfg1",
+        "x": 380,
+        "y": 120,
+        "wires": [["lywsd02dbg1"]]
+    },
+    {
+        "id": "lywsd02dbg1",
+        "type": "debug",
+        "z": "lywsd02tab1",
+        "name": "Reading",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "lywsd02tab1",
+        "type": "tab",
+        "label": "LYWSD02 Example",
+        "disabled": false,
+        "info": ""
+    }
+]
