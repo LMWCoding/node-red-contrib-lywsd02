@@ -1,4 +1,4 @@
-# node-red-contrib-lywsd02
+# @lmwcoding/node-red-contrib-lywsd02
 
 Node-RED nodes to read **Xiaomi LYWSD02MMC** temperature/humidity sensors via a
 reliable **BLE GATT connection** (not passive scanning).
@@ -22,7 +22,7 @@ are unreliable on many modern Linux/BlueZ setups.
 ## Installation
 
 ```
-npm install node-red-contrib-lywsd02
+npm install @lmwcoding/node-red-contrib-lywsd02
 ```
 
 ### Prerequisites
