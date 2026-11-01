@@ -27,11 +27,7 @@ npm install @lmwcoding/node-red-contrib-lywsd02
 
 ### Prerequisites
 
-1. **Python 3** with the `bleak` package:
-   ```
-   pip3 install bleak
-   ```
-   (or install into a virtualenv and point the node at that interpreter)
+1. **Python 3** with the `bleak` package (see [Python Setup](#python-setup) below).
 
 2. **Bluetooth** running on the host (`bluetooth` service active).
 
@@ -40,6 +36,61 @@ npm install @lmwcoding/node-red-contrib-lywsd02
    sudo usermod -aG bluetooth <user>
    ```
    (then restart Node-RED)
+
+## Python Setup
+
+The `lywsd02-read` node shells out to a Python interpreter to run the bundled
+`lib/ble-helper.py` script. That script requires the
+[`bleak`](https://github.com/hbldh/bleak) package (which talks to BlueZ over
+D-Bus).
+
+### Recommended: dedicated virtualenv
+
+The cleanest approach is a **virtualenv at the `.node-red` level**. This keeps
+the dependency isolated from your system Python and makes it available to any
+other Node-RED node that might need Python packages in the future.
+
+```bash
+# 1. Create the venv (adjust path if your Node-RED user dir is elsewhere)
+python3 -m venv ~/.node-red/.venv
+
+# 2. Install bleak into it
+~/.node-red/.venv/bin/pip install bleak
+```
+
+> **Why not `pip3 install bleak` system-wide?**
+> On modern Debian/Ubuntu (Python 3.11+) the system Python is "externally
+> managed" (PEP 668) and will refuse pip installs. Even where it works,
+> installing into system Python risks conflicts with OS-managed packages.
+> A venv avoids all of this.
+
+### Point the node at the venv
+
+In the **`lywsd02-config`** node, set the **Python Path** field to the
+interpreter inside your venv:
+
+```
+/home/user/.node-red/.venv/bin/python3
+```
+
+(Replace `/home/user` with your actual home directory.)
+
+If you leave the field as the default `python3`, Node-RED will use whatever
+`python3` is first on the system `PATH` — which typically does **not** have
+`bleak` installed.
+
+### Alternative: system-wide install
+
+If you prefer (or your distro allows it), you can install `bleak` into the
+system Python and leave the Python Path as `python3`:
+
+```bash
+pip3 install bleak
+# or, on PEP 668 distros:
+pip3 install --break-system-packages bleak
+```
+
+This works but is harder to manage and may conflict with OS package updates.
 
 ## Nodes
 

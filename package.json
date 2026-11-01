@@ -1,6 +1,6 @@
 {
   "name": "@lmwcoding/node-red-contrib-lywsd02",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node-RED nodes to read Xiaomi LYWSD02MMC temperature/humidity sensors via a reliable BLE GATT connection",
   "keywords": [
     "node-red",
